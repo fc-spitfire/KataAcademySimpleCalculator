@@ -4,45 +4,6 @@ import java.util.Scanner;
 import static java.lang.String.join;
 import static java.util.Collections.nCopies;
 
-enum Roman{
-    ONE("I", 1),
-    TWO("II", 2),
-    THREE("III", 3),
-    FOUR("IV", 4),
-    FIVE("V",5),
-    SIX("VI",6),
-    SEVEN("VII", 7),
-    EIGHT("VII", 8),
-    NINE("IX",9),
-    TEN("X",10);
-    private final int value;
-    private final String romanNumeral;
-    Roman(String romanNumeral, int value) {
-        this.value = value;
-        this.romanNumeral = romanNumeral;
-    }
-    public int value(){
-        return value;
-    }
-    public String romanNumeral(){
-        return romanNumeral;
-    }
-}
-
-enum Operation{
-    DIVIDE("/"),
-    MULTIPLY("*"),
-    ADD("+"),
-    SUBTRACT("-");
-    final String s;
-    Operation(String s) {
-        this.s = s;
-    }
-    public String value(){
-        return s;
-    }
-}
-
 class Main {
 
     //СКОПИРОВАЛ СО СТАКОВЕРФЛОУ! ГЕНИАЛЬНОЕ РЕШЕНИЕ
@@ -76,7 +37,7 @@ class Main {
         return -1;
     }
 
-    static int valueArabic(String num) {
+    static int valueArabic(String num) throws Exception {
         int a;
         try {
             a = Integer.parseInt(num);
@@ -84,7 +45,8 @@ class Main {
             //Здесь не ловим, ловим дальше
             return 0;
         }
-        return ((a > 0)&&(a < 11)) ? a : -10;
+        if ((a > 0)&&(a < 11)) return a;
+        else throw new Exception("Число должно быть от 1 до 10");
     }
 
     static int calculate(int a, String s, int b) throws Exception {
